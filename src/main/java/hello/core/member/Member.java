@@ -4,11 +4,13 @@ public class Member {
 
     private Long id;
     private String name;
+    private Long age;
     private Grade grade;
 
-    public Member(Long id, String name, Grade grade) {
+    public Member(Long id, String name, Long age, Grade grade) {
         this.id = id;
         this.name = name;
+        this.age = age;
         this.grade = grade;
     }
 
@@ -24,6 +26,10 @@ public class Member {
         return grade;
     }
 
+    public Long getAge() {
+        return age;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -34,5 +40,9 @@ public class Member {
 
     public void setGrade(Grade grade) {
         this.grade = grade;
+    }
+
+    public void setAge(Long age) {
+        this.age = age;
     }
 }
