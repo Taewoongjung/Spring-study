@@ -22,6 +22,4 @@ public class MemoryMemberRepository implements MemberRepository {
     public Member deleteMember(Long memberId) {
         return store.remove(memberId);
     }
-
-
 }
