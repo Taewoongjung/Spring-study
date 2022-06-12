@@ -45,4 +45,14 @@ public class Member {
     public void setAge(Long age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", grade=" + grade +
+                '}';
+    }
 }
