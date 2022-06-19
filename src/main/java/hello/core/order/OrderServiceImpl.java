@@ -6,14 +6,18 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 기획자로 인해 discountPolicy 가 변경 되었다.
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); // 이거를
-    private DiscountPolicy discountPolicy; // 이렇게 변경되었다. (final 은 무조건 값이 할당되어야 하기 때문에 여기는 값이 없으니 지움)
+    private final DiscountPolicy discountPolicy; // 이렇게 변경되었다. (final 은 무조건 값이 할당되어야 하기 때문에 여기는 값이 없으니 지움)
 
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) { // 이렇게 하면 철저히 DIP 를 지키고 있다.
         this.memberRepository = memberRepository; // 인터페이스에만 의존하기 때문에 DIP 를 지키고 있다는 뜻이다. ( = 여기에서는 구체적인 클래스에 대해 전혀 모른다)
         this.discountPolicy = discountPolicy;
@@ -36,5 +40,10 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice);
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+
+    // 테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
