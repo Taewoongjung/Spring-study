@@ -6,10 +6,12 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+//@RequiredArgsConstructor // 생성자를 자동으로 만들어준다. 그래서 코드를 줄일 수 있다.
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
@@ -18,10 +20,16 @@ public class OrderServiceImpl implements OrderService {
     private final DiscountPolicy discountPolicy; // 이렇게 변경되었다. (final 은 무조건 값이 할당되어야 하기 때문에 여기는 값이 없으니 지움)
 
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) { // 이렇게 하면 철저히 DIP 를 지키고 있다.
-        this.memberRepository = memberRepository; // 인터페이스에만 의존하기 때문에 DIP 를 지키고 있다는 뜻이다. ( = 여기에서는 구체적인 클래스에 대해 전혀 모른다)
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
+
+    //    @Autowired
+//    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) { // 이렇게 하면 철저히 DIP 를 지키고 있다.
+//        this.memberRepository = memberRepository; // 인터페이스에만 의존하기 때문에 DIP 를 지키고 있다는 뜻이다. ( = 여기에서는 구체적인 클래스에 대해 전혀 모른다)
+//        this.discountPolicy = discountPolicy;
+//    }
 
     /* MEMO
     *
