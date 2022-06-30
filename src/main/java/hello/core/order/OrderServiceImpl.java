@@ -1,13 +1,10 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
-import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,6 +15,9 @@ public class OrderServiceImpl implements OrderService {
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 기획자로 인해 discountPolicy 가 변경 되었다.
 //    private final DiscountPolicy discountPolicy = new RateDiscountPolicy(); // 이거를
     private final DiscountPolicy discountPolicy; // 이렇게 변경되었다. (final 은 무조건 값이 할당되어야 하기 때문에 여기는 값이 없으니 지움)
+
+    @Autowired
+    private DiscountPolicy rateDiscountPolicy;
 
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {

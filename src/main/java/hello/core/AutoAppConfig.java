@@ -8,7 +8,7 @@ import org.springframework.context.annotation.FilterType;
 @ComponentScan(
         // basePackages
         // 이렇게 하면 member 폴더만 ComponentScan 의 대상이 된다.
-        basePackages = "hello.core.member",
+//        basePackages = "hello.core.member",
 
         // excludeFilters
         // @Configuration 이 붙어있는 것들도 사실상 안에 @Component 가 붙어있어서 포함이 된다. 그래서
