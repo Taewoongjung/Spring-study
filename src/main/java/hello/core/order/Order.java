@@ -1,5 +1,7 @@
 package hello.core.order;
 
+import java.util.Objects;
+
 public class Order {
 
     private Long memberId;
