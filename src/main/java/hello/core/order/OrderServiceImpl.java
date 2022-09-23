@@ -3,12 +3,12 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-//@RequiredArgsConstructor // 생성자를 자동으로 만들어준다. 그래서 코드를 줄일 수 있다.
+@RequiredArgsConstructor // 생성자를 자동으로 만들어준다. 그래서 코드를 줄일 수 있다.
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepository memberRepository;
@@ -19,11 +19,6 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private DiscountPolicy rateDiscountPolicy;
 
-    @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-        this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
-    }
 
     //    @Autowired
 //    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) { // 이렇게 하면 철저히 DIP 를 지키고 있다.
